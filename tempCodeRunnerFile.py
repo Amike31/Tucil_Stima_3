@@ -1,0 +1,3 @@
+
+# a.printMatrix()
+# a.fillKURANGI()
