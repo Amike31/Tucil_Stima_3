@@ -25,7 +25,7 @@ else:
     start = time.time()
     while not( isGOAL_STATE(PQ[0][1].getMatrix()) ):
         # Urutkan berdasarkan prioritas
-        # PQ.sort(reverse=True)
+        PQ.sort(reverse=True, key=lambda pq: pq[0])
         
         # Expand simpul pertama yang ada pada antrian
         currBoard = PQ[0][1]

@@ -36,5 +36,12 @@ def moveProgress(thisBoard, prev_Path, nextDirection, PQ, node_created):
     PQ.append( (this_cost, thisBoard) )
     node_created.count = node_created.count + 1
     # print(node_created.count)
+
+# def sorting(PQ):
+#     newPQ = []
+#     Elm1 = PQ[0]
+#     PQ.pop(0)
+#     while len(PQ)>0:
+#         if 
     
     
