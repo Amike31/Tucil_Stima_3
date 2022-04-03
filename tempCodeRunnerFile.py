@@ -1,3 +1,1 @@
-
-# a.printMatrix()
-# a.fillKURANGI()
+ns.n

@@ -1,3 +1,4 @@
+from copy import deepcopy
 import random
 
 def readFile(filename):
@@ -18,6 +19,22 @@ def randomize():
     mat = random.sample(range(1,17),16)
     return mat
 
+def isGOAL_STATE(mat):
+    for i in range(4):
+        for j in range(4):
+            pos = (i)*4 + (j+1)
+            if (pos != mat[i][j]):
+                return False
+    return True
 
-
-
+# Fungsi untuk menentukan simpul yang diexpand dan yang dimasukkan ke dalam antria
+def moveProgress(thisBoard, prev_Path, nextDirection, PQ, node_created):
+    thisBoard.incrementf_cost()
+    thisBoard.prev_path = deepcopy(prev_Path)
+    thisBoard.continue_path(nextDirection)
+    this_cost = thisBoard.Total_cost()
+    PQ.append( (this_cost, thisBoard) )
+    node_created.count = node_created.count + 1
+    # print(node_created.count)
+    
+    
