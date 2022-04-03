@@ -33,7 +33,8 @@ def moveProgress(thisBoard, prev_Path, nextDirection, PQ, node_created):
     thisBoard.prev_path = deepcopy(prev_Path)
     thisBoard.continue_path(nextDirection)
     this_cost = thisBoard.Total_cost()
-    PQ.append( (this_cost, thisBoard) )
+    # PQ.append( (this_cost, thisBoard) )                           # LIST IMPLEMENT
+    PQ.put( (this_cost, thisBoard) )                                # Prio IMPLEMENT
     node_created.count = node_created.count + 1
     # print(node_created.count)
     

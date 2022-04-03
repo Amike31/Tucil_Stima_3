@@ -1,3 +1,4 @@
+from queue import PriorityQueue
 from types import SimpleNamespace
 from Board import *
 from Others import *
@@ -14,22 +15,26 @@ if not(can):
     print("Puzzle-15 ini Tidak Dapat Diselesaikan..!")
 else:
     # DEKLARASI
-    PQ = []
+    # PQ = []                                               # LIST IMPLEMENT
+    PQ = PriorityQueue()                                    # Prio IMPLEMENT
     node_created = SimpleNamespace()
     node_created.count = 0
     
     # INISIALIASI Puzzle awal di dalam antrian
-    PQ.append( (0,board) )
+    # PQ.append( (0,board) )                                # LIST IMPLEMENT                        
+    PQ.put( (0,board) )                                     # Prio IMPLEMENT
     node_created.count += 1
     
     start = time.time()
-    while not( isGOAL_STATE(PQ[0][1].getMatrix()) ):
+    # while not( isGOAL_STATE(PQ[0][1].getMatrix()) ):      # LIST IMPLEMENT
+    while not( isGOAL_STATE(PQ.queue[0][1].getMatrix()) ):  # Prio IMPLEMENT
         # Urutkan berdasarkan prioritas
-        # PQ.sort(reverse=True)
+        # PQ.sort(reverse=True)                             # LIST IMPLEMENT : ERROR
         
         # Expand simpul pertama yang ada pada antrian
-        currBoard = PQ[0][1]
-        PQ.pop(0)
+        # currBoard = PQ[0][1]                              # LIST IMPLEMENT
+        # PQ.pop(0)                                         # LIST IMPLEMENT
+        currBoard = PQ.get()[1]                             # Prio IMPLEMENT
         
         # 1. Raising child node based on move Up
         x1, _ = currBoard.getBlank()
@@ -69,7 +74,8 @@ else:
     board.printMatrix()
     
     i = 0
-    for direction in PQ[0][1].getprev_path():
+    # for direction in PQ[0][1].getprev_path():             # LIST IMPLEMENT
+    for direction in PQ.queue[0][1].getprev_path():         # Prio IMPLEMENT
         if i == 0:
             i += 1
             continue
