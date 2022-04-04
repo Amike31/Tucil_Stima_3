@@ -16,7 +16,11 @@ def readManual():
     return mat
 
 def randomize():
-    mat = random.sample(range(1,17),16)
+    ran = random.sample(range(1,17),16)
+    mat = [[0 for j in range(4)] for i in range(4)]
+    for i in range(4):
+        for j in range(4):
+            mat[i][j] = int(ran[4*i + j])
     return mat
 
 def isGOAL_STATE(mat):
@@ -27,7 +31,7 @@ def isGOAL_STATE(mat):
                 return False
     return True
 
-# Fungsi untuk menentukan simpul yang diexpand dan yang dimasukkan ke dalam antria
+# Fungsi untuk menentukan simpul yang diexpand dan yang dimasukkan ke dalam antrian
 def moveProgress(thisBoard, prev_Path, nextDirection, PQ, node_created):
     thisBoard.incrementf_cost()
     thisBoard.prev_path = deepcopy(prev_Path)
@@ -36,6 +40,5 @@ def moveProgress(thisBoard, prev_Path, nextDirection, PQ, node_created):
     # PQ.append( (this_cost, thisBoard) )                           # LIST IMPLEMENT
     PQ.put( (this_cost, thisBoard) )                                # Prio IMPLEMENT
     node_created.count = node_created.count + 1
-    # print(node_created.count)
     
     
