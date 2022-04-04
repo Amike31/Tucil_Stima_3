@@ -9,6 +9,9 @@ import msvcrt
 def inputPilihan():
     looping = True
     time.sleep(0.8)
+    print("(1) for file input        (3) for random input")
+    print("(2) for manual input      (99) exit the program")
+    print()
     op = int(input("Choose a number (1) or (2) or (3) or (99) : "))
     print()
     while not(op==1 or op==2 or op==3 or op==99):
@@ -16,12 +19,12 @@ def inputPilihan():
         op = int(input("Choose a number (1) or (2) or (3) or (99) : "))
         print()
     if op == 1:
-        file = input("Now, please input your filename (with extensions) : ")
+        file = input("Now, please input your filename (without extension) : ")
         Mtr = readFile(file)
     elif op == 2:
         Mtr = readManual()
     elif op == 3:
-        Mtr = randomize()
+        Mtr = simpleRandomize()
     elif op ==99:
         print("Thanks a lot for using our porgram...!!  />..<\\")
         print("Have a nice day..!!")
@@ -56,23 +59,23 @@ print("Press anykey to continue..!" )
 trash = msvcrt.getch()
 time.sleep(0.3)
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-time.sleep(0.8)
-print("1st Way : BOARD Configuration inputed by text file (.txt)")
-print("          You can input the file name that stored at folder \"test\"")
-print("          example : input.txt")
+time.sleep(0.6)
+print("--> 1st Way : BOARD Configuration inputed by text file (.txt)")
+print("              You can input the file name that stored at folder \"test\"")
+print("              example : \"in1\" for in1.txt text file")
 print()
-time.sleep(1.5)
-print("2nd Way : BOARD Configuration manually inputed")
-print("          You can input the matrix with 4x4 size that separated by space")
+time.sleep(1)
+print("--> 2nd Way : BOARD Configuration manually inputed")
+print("              You can input the matrix with 4x4 size that separated by space")
 time.sleep(0.5)
-print("""          example : 1  2  3  4
-                    5  6  7  8
-                    9 10 11 12
-                   13 14 15 16 """)
+print("""              example : 1  2  3  4
+                        5  6  7  8
+                        9 10 11 12
+                       13 14 15 16 """)
 print()
-time.sleep(1.5)
-print("3rd Way : BOARD Configuration generated randomly by our system")
-print("          Note : BOARD will be showed later")
+time.sleep(1)
+print("--> 3rd Way : BOARD Configuration generated randomly by our system")
+print("              Note : BOARD will be showed later")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 while True:
@@ -98,8 +101,8 @@ while True:
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     if not(can):
-        print("--->>   WARNING..!!!")
-        print("Puzzle-15 ini Tidak Dapat Diselesaikan..! Akibat BOUNDING VALUE bernilai ganjil.")
+        print("--->>    !...WARNING...!    <<---")
+        print("This Puzzle-15 can not be solved..! Because, its BOUNDING VALUE is ODD...")
     else:
         # DEKLARASI
         # PQ = []                                               # LIST IMPLEMENT
@@ -150,21 +153,22 @@ while True:
         stop = time.time()
         timeTaken = (stop-start)
         
-        print("-->     Solusi ditemukan...!!!     <--")
+        print("-->     !...SOLUTION FOUND...!     <--")
         print()
         time.sleep(1)
         print("--> INITIAL STATE of PUZZLE-15 <--")
         board.printMatrix()
         print()
         
-        i = 0
+        i = -1
         # for direction in PQ[0][1].getprev_path():             # LIST IMPLEMENT
         for direction in PQ.queue[0][1].getprev_path():         # Prio IMPLEMENT
-            if i == 0:
+            if i == -1:
                 i += 1
                 continue
+            i += 1
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print("--> LANGKAH yg DIAMBIL : ",end="")
+            print("--> Taken MOVE : ",end="")
             if direction == "u":
                 print("ATAS")
                 board.move("u")
@@ -182,8 +186,12 @@ while True:
             print()
             time.sleep(1)
 
-        print(f"Waktu eksekusi program: {timeTaken} seconds")
-        print(f"Banyaknya simpul yang dibangkitkan (simpul hidup): {node_created.count} buah")
+        print(f"Program Execution time : {timeTaken} seconds")
+        print(f"                       : {timeTaken*1000} miliseconds")
+        print(f"Count of Move Taken : {i}")
+        print("Path that able to take : ",end="")
+        PQ.queue[0][1].printPATH()
+        print(f"Count of Raised Node (living-node ever) : {node_created.count}")
         
     print()
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")

@@ -166,6 +166,14 @@ class Board():
                 else:
                     print(f"|  {i+1}  | {KURANGI[i]} |")
         print("|-----------|")
+        
+    def printPATH(self):
+        for i in self.__prev_path:
+            if i=="none":
+                continue
+            else:
+                print(f"{i} ->",end=" ")
+        print("GOAL")
             
     ### COMPARATOR (YA allah debug ini dari malem sampe 13 jam g tidur T_T)
     def __lt__(self, other):
