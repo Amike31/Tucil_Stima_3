@@ -23,38 +23,36 @@ else:
     node_created.count += 1
     
     start = time.time()
-    while not( isGOAL_STATE(PQ[0][1].getMatrix()) ):
+    while not( isGOAL_STATE( PQ[0][1].getMatrix() ) ):
         # Urutkan berdasarkan prioritas
-        PQ.sort(reverse=True, key=lambda pq: pq[0])
+        # PQ.sort(reverse=True, key=lambda pq: pq[0])
         
         # Expand simpul pertama yang ada pada antrian
         currBoard = PQ[0][1]
         PQ.pop(0)
         
+        xn, yn = currBoard.getBlank()
+        
         # 1. Raising child node based on move Up
-        x1, _ = currBoard.getBlank()
-        if (x1 != 0) and (currBoard.getprev_path()[-1] != "d"):
+        if (xn != 0) and (currBoard.getprev_path()[-1] != "d"):
             new1 = deepcopy(currBoard)
             new1.move("u")
             moveProgress(new1,currBoard.getprev_path(),"u",PQ,node_created)
         
         # 2. Raising child node based on move Right
-        _, y2 = currBoard.getBlank()
-        if (y2 != 3) and (currBoard.getprev_path()[-1] != "l"):
+        if (yn != 3) and (currBoard.getprev_path()[-1] != "l"):
             new2 = deepcopy(currBoard)
             new2.move("r")
             moveProgress(new2,currBoard.getprev_path(),"r",PQ,node_created)
         
         # 3. Raising child node based on move Down
-        x3, _ = currBoard.getBlank()
-        if (x3 != 3) and (currBoard.getprev_path()[-1] != "u"):
+        if (xn != 3) and (currBoard.getprev_path()[-1] != "u"):
             new3 = deepcopy(currBoard)
             new3.move("d")
             moveProgress(new3,currBoard.getprev_path(),"d",PQ,node_created)
         
         # 4. Raising child node based on move Down
-        _, y4 = currBoard.getBlank()
-        if (y4 != 0) and (currBoard.getprev_path()[-1] != "r"):
+        if (yn != 0) and (currBoard.getprev_path()[-1] != "r"):
             new4 = deepcopy(currBoard)
             new4.move("l")
             moveProgress(new4,currBoard.getprev_path(),"l",PQ,node_created)
