@@ -167,7 +167,13 @@ class Board():
                     print(f"|  {i+1}  | {KURANGI[i]} |")
         print("|-----------|")
             
-    # # // PRINT    
-    # def printBlankLocation(self):
-    #     print("Blank ada di {}".format(self.blank))
+    ### COMPARATOR (YA allah debug ini dari malem sampe 13 jam g tidur T_T)
+    def __lt__(self, other):
+        return True
+    def __le__(self, other):
+        return True
+    def __gt__(self, other):
+        return True
+    def __ge__(self, other):
+        return True
 
