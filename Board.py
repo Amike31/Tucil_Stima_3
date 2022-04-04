@@ -72,6 +72,26 @@ class Board():
                     y = j
         return x, y
     
+    # OUTPUT
+    def printMatrix(self):
+        print("/--..--..--..--\\")
+        for i in range(4):
+            print("|", end="")
+            for j in range(4):
+                bil = self.__mat[i][j]
+                if bil != 16:
+                    if bil < 10:
+                        print(f" {bil}", end="")
+                    else:
+                        print(bil, end="")
+                else:
+                    print("  ", end="")
+                if j!=3:
+                    print("  ",end="")
+                else:      
+                    print("|")
+        print("\\--..--..--..--/")
+    
     # MOVE
     def move(self, dir):
         x = self.__blankX
@@ -97,25 +117,7 @@ class Board():
         self.__mat[x][y] = temp
         self.setBlank(xn,yn)
     
-    # OUTPUT
-    def printMatrix(self):
-        print("/--..--..--..--\\")
-        for i in range(4):
-            print("|", end="")
-            for j in range(4):
-                bil = self.__mat[i][j]
-                if bil != 16:
-                    if bil < 10:
-                        print(f" {bil}", end="")
-                    else:
-                        print(bil, end="")
-                else:
-                    print("  ", end="")
-                if j!=3:
-                    print("  ",end="")
-                else:      
-                    print("|")
-        print("\\--..--..--..--/")
+    
               
         
     ### CHECKING FUNCTION

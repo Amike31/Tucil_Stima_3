@@ -12,11 +12,17 @@ def inputPilihan():
     print("(1) for file input        (3) for random input")
     print("(2) for manual input      (99) exit the program")
     print()
-    op = int(input("Choose a number (1) or (2) or (3) or (99) : "))
+    op = input("Choose a number (1) or (2) or (3) or (99) : ")
+    strInput = False
+    try:
+        int(op)
+    except ValueError:          # String Exception
+        op = 0
     print()
     while not(op==1 or op==2 or op==3 or op==99):
-        print("YOUR INPUT NOT VALID..!! Please reinput a number within range..!!")
-        op = int(input("Choose a number (1) or (2) or (3) or (99) : "))
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("YOUR INPUT NOT VALID..!! Please reinput a <NUMBER> within range..!!")
+        op = input("Choose a number (1) or (2) or (3) or (99) : ")
         print()
     if op == 1:
         file = input("Now, please input your filename (without extension) : ")
@@ -80,8 +86,15 @@ print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 while True:
     Mtr = inputPilihan()
-    if Mtr==[]:
+    if Mtr==[]:             # Exit Exception
         break
+    elif Mtr==[]:
+        break
+    elif Mtr==[-1]:
+        print("File tidak ditemukan..!! Harap masukan file yang berada dalam folder \"test\" dan tanpa extension..!!")
+        print()
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        continue
     
     board = Board(Mtr)
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -188,11 +201,10 @@ while True:
 
         print(f"Program Execution time : {timeTaken} seconds")
         print(f"                       : {timeTaken*1000} miliseconds")
-        print(f"Count of Move Taken : {i}")
+        print(f"Count of Move Taken : {i} Moves")
         print("Path that able to take : ",end="")
         PQ.queue[0][1].printPATH()
-        print(f"Count of Raised Node (living-node ever) : {node_created.count}")
+        print(f"Count of Raised Node (living-node ever) : {node_created.count} Nodes")
         
     print()
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-

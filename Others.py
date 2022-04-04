@@ -3,9 +3,12 @@ import random
 
 def readFile(filename):
     filename = "test/" + filename +".txt"
-    with open(filename, 'r') as f:
-        mat = [[int(num) for num in line.split(' ')] for line in f if line.strip() != "" ]
-    return mat
+    try:
+        with open(filename, 'r') as f:
+            mat = [[int(num) for num in line.split(' ')] for line in f if line.strip() != "" ]
+        return mat
+    except FileNotFoundError:
+        return [-1]
 
 def readManual():
     print("Masukkan matrix 16 angka (dalam bentuk kotak dg spasi): ")
