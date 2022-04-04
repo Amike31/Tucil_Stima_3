@@ -1,5 +1,4 @@
 from queue import PriorityQueue
-from traceback import print_tb
 from types import SimpleNamespace
 from Board import *
 from Others import *
