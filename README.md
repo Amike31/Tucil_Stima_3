@@ -2,10 +2,10 @@
 Penyelesaian Puzzle-15 Game Board menggunakan algorima Branch & Bound
 
 ## Deskripsi Singkat
-<img src="img/image2.png" alt="Alt text" title="Optional title">
-Pada Tucil kali ini akan dibuat sebuah program problem solving dari Game Board Puzzle-15. Puzzle-15 Game  pustaka (library) myConvexHull dalam bahasa Python yang dapat mengembalikan convex hull dari kumpulan data 2 dimensi (dapat dianggap kumpulan titik 2 dimensi). Himpunan titik pada bidang planar disebut convex jika untuk sembarang dua titik pada bidang tersebut (misal p dan q), seluruh segmen garis yang berakhir di p dan q berada pada himpunan tersebut. Contoh gambar 1 adalah poligon yang convex, sedangkan gambar 2 menunjukkan contoh yang non-convex.
+<img src="img/image2.png" alt="GUI Puzzle-15" title="Puzzle-15 Game Board">
+Pada Tucil kali ini akan dibuat sebuah program problem solving dari Game Board Puzzle-15. Puzzle-15 Game Board adalah Game berbentuk matrix berukuran 4 x 4. Semua kotak di dalam matrix diisi dengan angka dari 1 sampai 15 dan disisihkan 1 kotak kosong. Player diminta untuk memindahkan balok-balok angka ke kotak kosong sedemikian rupa sehingga dapat mencapat GOAL_STATE, yaitu balok angka-angka terurut membesar dan kotak kosong berada pada kotak terakhir
 
-<img src="img/image1.png" alt="Alt text" title="Optional title">
+<img src="img/image1.png" alt="Instance of Solving" title="Example of instance">
 
 ## Requirement Program
 Interpreter:
